@@ -19,7 +19,7 @@ const Product = ({ product }) => {
         try {
             dispatch(addToCart({ ...product, qty: 1 })); // Add one product
             //   navigate("/cart");
-            toast.success(`Item "${product.name}" added to cart successfully`);
+            toast.success(`Item "${product.name} ${product.image}" added to cart successfully`);
           } catch (err) {
             toast.error(err?.data?.message || err.error);
           }

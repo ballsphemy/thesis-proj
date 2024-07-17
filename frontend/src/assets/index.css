@@ -16,3 +16,17 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
 }
+
+
+.carousel-image-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-image-wrapper img {
+  max-width: 50%; /* Adjust as needed */
+}
+
+.carousel-caption {
+  text-align: center;
+}

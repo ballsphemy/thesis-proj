@@ -24,7 +24,8 @@
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.5",
     "thesis": "file:..",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "recharts": "^2.12.7"
   },
   "scripts": {
     "start": "react-scripts start",
