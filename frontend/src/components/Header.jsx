@@ -34,7 +34,7 @@ const Header = () => {
           <LinkContainer to="/">
             <Navbar.Brand>
               <img
-                src="uploads/Logo2.png" // Path relative to the public folder
+                src="uploads/logo2.png" // Path relative to the public folder
                 alt="VMApay Trading"
                 style={{ height: "40px" }} // Adjust the height as needed
               />
