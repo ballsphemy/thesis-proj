@@ -45,6 +45,7 @@ const RegisterScreen = () => {
   };
 
   return (
+    <div style={{ border: '2px solid black', padding: '10px', borderRadius: '10px' }}>
     <FormContainer>
       <h1>Sign Up</h1>
       <Form onSubmit={submitHandler}>
@@ -106,6 +107,7 @@ const RegisterScreen = () => {
         </Col>
       </Row>
     </FormContainer>
+    </div>
   );
 };
 
