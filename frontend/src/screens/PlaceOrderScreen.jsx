@@ -88,7 +88,7 @@ const PlaceOrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = $
+                          {item.qty} x ₱{item.price} = ₱
                           {addDecimals(item.qty * item.price).toFixed(2)}
                         </Col>
                       </Row>
@@ -108,20 +108,20 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items: </Col>
-                  <Col>$ {addDecimals(cart.itemsPrice).toFixed(2)}</Col>
+                  <Col>₱ {addDecimals(cart.itemsPrice).toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               {error && <Message variant="danger">{error.message}</Message>}
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping: </Col>
-                  <Col>$ {cart.shippingPrice.toFixed(2)}</Col>
+                  <Col>₱ {cart.shippingPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total Price: </Col>
-                  <Col>$ {cart.totalPrice.toFixed(2)}</Col>
+                  <Col>₱ {cart.totalPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item></ListGroup.Item>

@@ -122,7 +122,7 @@ const AnalyticsDashboard = () => {
           <Card className="mb-3">
             <Card.Body>
               <Card.Title>Total Sales</Card.Title>
-              <Card.Text>${salesData?.totalSales[0]?.total.toFixed(2)}</Card.Text>
+              <Card.Text>₱{salesData?.totalSales[0]?.total.toFixed(2)}</Card.Text>
             </Card.Body>
           </Card>
         </Col>

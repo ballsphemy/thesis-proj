@@ -100,10 +100,10 @@ const ProductScreen = () => {
                   />
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <a>Price: ${product.price}</a>
+                  <a>Price: ₱{product.price}</a>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <a>Description: ${product.description}</a>
+                  <a>Description: {product.description}</a>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -114,7 +114,7 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong>₱{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>

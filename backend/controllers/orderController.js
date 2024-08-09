@@ -1,5 +1,6 @@
 import asynchandler from "../middleware/asyncHandler.js";
 import Order from "../models/orderModel.js";
+import Product from "../models/productModels.js"
 
 //@desc create new Order
 //@route post /api/orders
@@ -61,12 +62,37 @@ const getOrderById = asynchandler(async (req, res) => {
   }
 });
 
+
+const updateProductQuantity = async (productId, quantityToReduce) => {
+  const product = await Product.findById(productId);
+  if (product) {
+    product.countInStock = Math.max(0, product.countInStock - quantityToReduce);
+    await product.save();
+  }
+};
+
+const checkInventory = asynchandler(async (orderItems) => {
+  for (const item of orderItems) {
+    const product = await Product.findById(item.product);
+    if (!product || product.countInStock < item.qty) {
+      throw new Error(`Product ${product.name} is out of stock`);
+    }
+  }
+});
+
 //@desc update order status to paid
 //@route put /api/orders/:id/pay
 //@access private/admin
 const updateOrderToPaid = asynchandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
+
   if (order) {
+    // Check if order is already paid to prevent double processing
+    if (order.isPaid) {
+      res.status(400);
+      throw new Error('Order is already paid');
+    }
+
     order.isPaid = true;
     order.paidAt = Date.now();
     order.paymentResult = {
@@ -75,11 +101,17 @@ const updateOrderToPaid = asynchandler(async (req, res) => {
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     };
+
+    // Update product quantities
+    for (const item of order.orderItems) {
+      await updateProductQuantity(item.product, item.qty);
+    }
+
     const updatedOrder = await order.save();
     res.status(200).json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error("Order not found");
+    throw new Error('Order not found');
   }
 });
 
@@ -107,6 +139,7 @@ const getOrders = asynchandler(async (req, res) => {
   const orders = await Order.find({}).populate("user", "id name");
   res.status(200).json(orders);
 });
+
 
 export {
   addOrderItems,

@@ -11,6 +11,8 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleWare.js";
 import analyticsRoutes from './routes/analyticsRoutes.js';
+import cron from 'node-cron';
+import axios from 'axios';
 
 const port = process.env.PORT || 5000;
 connectDB();
@@ -59,6 +61,20 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running");
   });
 }
+
+app.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
+
+
+cron.schedule('*/10 * * * *', async () => {
+  try {
+    const response = await axios.get('https://thesis-proj.onrender.com/ping');
+    console.log('Ping successful:', response.data);
+  } catch (error) {
+    console.error('Ping failed:', error.message);
+  }
+});
 
 // Error Handling Middleware
 app.use(notFound);

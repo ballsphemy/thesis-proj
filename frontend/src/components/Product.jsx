@@ -14,17 +14,23 @@ const Product = ({ product }) => {
 
   const addToCartHandler = () => {
     if (product.countInStock === 0) {
-      toast.error("no stock available");
+      toast.error("No stock available");
     } else {
-        try {
-            dispatch(addToCart({ ...product, qty: 1 })); // Add one product
-            //   navigate("/cart");
-            toast.success(`Item "${product.name} ${product.image}" added to cart successfully`);
-          } catch (err) {
-            toast.error(err?.data?.message || err.error);
-          }
+      try {
+        dispatch(addToCart({ ...product, qty: 1 })); // Add one product
+        // navigate("/cart");
+        toast.success(
+          <>
+            <div>
+              <img src={product.image} alt={product.name} style={{ width: '50px', marginRight: '10px' }} />
+              <span>Item "{product.name}" added to cart successfully</span>
+            </div>
+          </>
+        );
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     }
-    
   };
 
   return (
@@ -44,7 +50,7 @@ const Product = ({ product }) => {
             text={`${product.numReviews} reviews`}
           />
         </Card.Text>
-        <Card.Text as="h3">${product.price}</Card.Text>
+        <Card.Text as="h3">₱{product.price}</Card.Text>
         <Button variant="secondary" size="sm" onClick={addToCartHandler}>
           Add to Cart {/*here is where i put ard to cart handler */}
         </Button>
