@@ -14,6 +14,9 @@ const addOrderItems = asynchandler(async (req, res) => {
     shippingPrice,
     totalPrice,
   } = req.body;
+
+  console.log('Incoming request headers:', req.headers);
+  console.log('Authenticated user:', req.user);
   if (orderItems && orderItems.lenght === 0) {
     res.status(400);
     throw new Error("No order Items");
