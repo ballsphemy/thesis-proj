@@ -9,6 +9,7 @@ const Footer = () => {
             <Row>
                 <Col className="text-center py-3 footer">
                    <p>VMApay Trading &copy; {currentYear}</p>
+                   <p>Email us at VMApay@gmail.com</p>
                 </Col>
             </Row>
         </Container>
